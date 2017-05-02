@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  stu_id: MyString
+  stu_class: MyString
+  stu_year: MyString
+
+two:
+  stu_id: MyString
+  stu_class: MyString
+  stu_year: MyString
