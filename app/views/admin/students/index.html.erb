@@ -7,7 +7,7 @@
 <br>
 <h4>每天登記投票人數</h4>
 
-<%= line_chart Student.group_by_day(:created_at).count %>
+<%= line_chart Student.group_by_hour(:created_at).count %>
 <br>
 <hr>
 <br>
