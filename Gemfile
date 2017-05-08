@@ -32,6 +32,8 @@ gem 'kaminari'
 gem 'devise', git: 'https://github.com/gogovan/devise.git', branch: 'rails-5.1'
 gem 'erubis'
 gem 'therubyracer'
+gem "chartkick"
+gem 'groupdate'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

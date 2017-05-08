@@ -1,0 +1,24 @@
+<div style="padding:50px;" align="center">
+
+
+<h1 style="background-color:#333; color:white">總投票數：<%= @students.length.to_s %>人</h1>
+<br>
+<hr>
+<br>
+<h4>每天登記投票人數</h4>
+
+<%= line_chart Student.group_by_day(:created_at).count %>
+<br>
+<hr>
+<br>
+<h4>系級與年級</h4>
+<div class="row">
+  <div class="col-md-6">
+    <%= pie_chart Student.group(:stu_class).count %>
+  </div>
+  <div class="col-md-6">
+    <%= pie_chart Student.group(:stu_year).count %>
+  </div>
+</div>
+
+</div>
