@@ -15,3 +15,8 @@ zh-TW:
       next: "下一頁 &rsaquo;"
       previous: "&lsaquo; 上一頁"
       truncate: "&hellip;"
+
+  devise:
+    sessions:
+      signed_in: "已成功登入"
+      signed_out: "已成功登出"

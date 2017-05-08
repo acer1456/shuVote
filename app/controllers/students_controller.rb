@@ -1,11 +1,16 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+    before_action :set_student, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!
 
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all.order(id: :desc).page(params[:page])
-    @student = Student.new
+    # if current_user.try(:role?)
+    #
+    # else
+      @student = Student.new
+      @students = Student.all.order(id: :desc).page(params[:page])
+    # end
   end
 
   # GET /students/1
@@ -15,6 +20,7 @@ class StudentsController < ApplicationController
 
   # GET /students/new
   def new
+    @student = Student.new
   end
 
   # GET /students/1/edit
@@ -25,17 +31,15 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
-
-    respond_to do |format|
-
-      if @student.save
-        format.html { redirect_to root_path, notice: '輸入學號成功' }
-        # format.json { render :show, status: :created, location: @student }
-      else
-        format.html { redirect_to root_path, alert: @student.errors.full_messages }
-        # format.json { render json: @student.errors, status: :unprocessable_entity }
-      end
-    end
+        respond_to do |format|
+          if @student.save
+            format.html { redirect_to root_path, notice: '輸入學號成功' }
+            # format.json { render :show, status: :created, location: @student }
+          else
+            format.html { redirect_to root_path, alert: @student.errors.full_messages }
+            # format.json { render json: @student.errors, status: :unprocessable_entity }
+          end
+        end
   end
 
   # PATCH/PUT /students/1
@@ -55,11 +59,11 @@ class StudentsController < ApplicationController
   # DELETE /students/1
   # DELETE /students/1.json
   def destroy
-    @student.destroy
-    respond_to do |format|
-      format.html { redirect_to students_url, notice: '刪除學號成功' }
-      format.json { head :no_content }
-    end
+        @student.destroy
+        respond_to do |format|
+          format.html { redirect_to root_path, notice: '刪除學號成功' }
+          # format.json { head :no_content }
+        end
   end
 
   private

@@ -1,0 +1,40 @@
+
+<div class="container" style="padding:50px">
+
+  <h2>登入</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <form class="form-signin">
+        <span>電子信箱：</span>
+        <div class="">
+          <%= f.email_field :email, class:"form-control", autofocus: true, autocomplete: "on", required: true %>
+        </div>
+
+        <br>
+
+        <span>密碼：</span>
+        <div class="">
+          <%= f.password_field :password, class:"form-control", autocomplete: "on", required: true %>
+        </div>
+
+        <br>
+
+        <div class="form-group">
+             <div class="checkbox">
+               <label>
+                 <% if devise_mapping.rememberable? -%>
+                 <%= f.check_box :remember_me %> 記得我
+                 <% end -%>
+               </label>
+           </div>
+         </div>
+        <hr>
+        <div class="form-group">
+              <%= f.submit "登入", class:"btn btn-primary" %> ｜
+              <% end %>
+              <%= render "devise/shared/links" %>
+        </div>
+      </form>
+
+
+</div>

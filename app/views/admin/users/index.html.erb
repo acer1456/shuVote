@@ -1,0 +1,62 @@
+<div style="padding:50px 0px 50px 0px;">
+
+  <p align="center">操作輸入學號的人，必須有<b style="color:green">管理員身份</b>，請選委長給予身份</p>
+
+<hr>
+
+<table id="myTable" class="table table-sm table-hover dt-responsive" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+          <th>信箱</th>
+          <th>最後登入</th>
+          <th>次數</th>
+          <th>最後ip</th>
+          <th>註冊於</th>
+          <th>管理員</th>
+          <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr id="user-<%= user.id %>">
+
+          <td>
+            <% if user.email == "acer1456@gmail.com" %>
+            <b style="color:green">超級管理員</b>
+            <% else %>
+            <%= user.email %>
+            <% end %>
+          </td>
+          <td><%= I18n.l( user.last_sign_in_at, :format => :long  ) %></td>
+          <td><%= user.sign_in_count %></td>
+          <td><%= user.last_sign_in_ip %></td>
+          <td><%= I18n.l( user.created_at, :format => :long ) %></td>
+
+          <td>
+            <% if user.role == true %>
+              <b style="color:green">YES</b>
+            <% else %>
+              <span style="color:red">NO</span>
+            <% end %>
+          </td>
+
+          <td>
+            <!-- <td><%= link_to "詳細", admin_user_path(user), :remote => true, data: {toggle: "modal", target: "#userModal"}, class:"btn btn-sm btn-info" %> -->
+            <% if user.email == "acer1456@gmail.com" %>
+            <% else %>
+            <%= link_to "編輯", edit_admin_user_path(user), class:"btn btn-sm btn-success", :remote => true, data: {toggle: "modal", target: "#updateModal"} %>
+            <%= link_to "刪除", admin_user_path(user), method: :delete, :remote => true, class:"btn btn-sm btn-danger", data: {confirm: "確定要刪除嗎？"}  %>
+            <% end %>
+          </td>
+
+        </tr>
+          <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-no-turbolink>
+
+
+
+</div>

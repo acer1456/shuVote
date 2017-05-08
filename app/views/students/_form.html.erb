@@ -1,4 +1,42 @@
-<%= form_with(model: student, local: true) do |form| %>
+<%= form_for (@student), :remote => true do |f| %>
+
+<% if @student.errors %>
+  <ul>
+  <% @student.errors.full_messages.each do |e| %>
+    <li><%= e %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<div class="row" style="padding:10px 0px 10px 0px;">
+  <form class="form">
+      <div class="col-sm-4">
+        <div class="input-group">
+            <span class="input-group-addon">學號：</span>
+            <%= f.text_field :stu_id, autofocus: true, type: "text", class: "form-control" %>
+          </div>
+      </div>
+
+      <div class="col-sm-3">
+          <div><%= f.select 'stu_class', options_for_select(["資管系", "財金系", "行管系", "觀光系", "經濟系", "企管系",  "社心系", "英文系",  "中文系",  "日文系",  "法律系", "新聞系", "口傳系", "公廣系", "資傳系", "圖傳系", "廣電系", "數媒系", "傳管系"], "資管系"), {}, :class => 'form-control' %>
+          </div>
+      </div>
+
+      <div class="col-sm-3">
+          <div><%= f.select 'stu_year', options_for_select(["一年級", "二年級", "三年級", "四年級", "研修"], "一年級"), {}, :class => 'form-control' %>
+          </div>
+      </div>
+
+      <div class="col-sm-2">
+        <button type="reset" class="btn btn-default">清除</button>
+        <%= f.submit '送出', class: "btn btn-primary" %>
+        <% end %>
+      </div>
+  </form>
+</div>
+
+
+<!-- <%= form_with(model: student, local: true) do |form| %>
   <% if student.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
@@ -29,4 +67,4 @@
   <div class="actions">
     <%= form.submit %>
   </div>
-<% end %>
+<% end %> -->
